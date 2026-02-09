@@ -445,7 +445,7 @@
 
  <!-- NEW P12: UX Agent 核心功能 (新增页面) -->
     <div class="slide">
-        <h2 class="text-4xl font-bold mb-8 border-l-8 border-sky-500 pl-6">用户意图巡检与干预Agent</h2>
+        <h2 class="text-4xl font-bold mb-8 border-l-8 border-sky-500 pl-6">用户意图巡检Agent</h2>
         <div class="grid grid-cols-2 gap-6">
             <!-- 场景1: 站外到站内 -->
             <div class="card border-l-4 border-sky-500">
@@ -454,9 +454,7 @@
                     <span class="tag-pill">一致性核查</span>
                 </div>
                 <p class="text-[11px] text-slate-400 mb-2">核查投放素材与落地页价格/利益点是否一致，解决用户兴趣丢失。</p>
-                <div class="json-snippet">
-{ "user_id": "u123", "inconsistent_elements": ["price", "promo"] }
-                </div>
+
             </div>
             <!-- 场景2: 新人登录 -->
             <div class="card border-l-4 border-indigo-500">
@@ -465,9 +463,7 @@
                     <span class="tag-pill">实时卡点干预</span>
                 </div>
                 <p class="text-[11px] text-slate-400 mb-2">基于 P90 动态阈值识别验证码/跳转卡点，实时下发权益吸引留存。</p>
-                <div class="json-snippet">
-{ "stuck_status": "sms_verify", "recommend": "issue_new_coupon" }
-                </div>
+
             </div>
             <!-- 场景3: 搜索体验 -->
             <div class="card border-l-4 border-emerald-500">
@@ -476,9 +472,7 @@
                     <span class="tag-pill">零少结果预警</span>
                 </div>
                 <p class="text-[11px] text-slate-400 mb-2">识别搜索不满意度及供给不足词，自动触发长尾补货任务或引导条。</p>
-                <div class="json-snippet">
-{ "query": "boho_dress", "missing_attributes": ["designer"] }
-                </div>
+
             </div>
             <!-- 场景4: 详情页助推 -->
             <div class="card border-l-4 border-amber-500">
@@ -487,9 +481,7 @@
                     <span class="tag-pill">转化瓶颈诊断</span>
                 </div>
                 <p class="text-[11px] text-slate-400 mb-2">通过评论情感分析及 SKU 转化诊断，自动弹出限时券或尺码助手。</p>
-                <div class="json-snippet">
-{ "sku_id": "s789", "diagnosis": "size_info_missing", "action": "show_size_helper" }
-                </div>
+
             </div>
         </div>
         <div class="mt-6 p-4 bg-sky-900/10 border border-sky-500/20 rounded-xl text-center">
