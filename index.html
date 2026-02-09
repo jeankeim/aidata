@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数据平台全流程分享 PPT</title>
+    <title>数据平台全流程分享 PPT - 融合版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
@@ -13,18 +13,23 @@
             color: #f8fafc;
             margin: 0;
             overflow: hidden;
+            height: 100vh;
         }
         .slide {
             display: none;
             height: 100vh;
             width: 100vw;
-            padding: 4rem;
+            padding: 3rem 5rem;
             background: radial-gradient(circle at top right, #0f172a, #020617);
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         .slide.active {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            z-index: 10;
         }
         .title-gradient {
             background: linear-gradient(to right, #38bdf8, #818cf8);
@@ -32,30 +37,48 @@
             -webkit-text-fill-color: transparent;
         }
         .card {
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(30, 41, 59, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
             border-radius: 1rem;
-            padding: 1.5rem;
-            transition: transform 0.3s ease;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
         }
-        .card:hover { transform: translateY(-5px); }
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-color: rgba(56, 189, 248, 0.4);
+        }
         .nav-btn {
             position: fixed;
             bottom: 2rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.6rem 1.2rem;
             border-radius: 0.5rem;
             cursor: pointer;
             z-index: 100;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            color: #38bdf8;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
-        .nav-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .nav-btn:hover { background: rgba(56, 189, 248, 0.2); }
         .progress-bar {
-            position: fixed; top: 0; left: 0; height: 5px; background: #38bdf8; transition: width 0.3s;
+            position: fixed; top: 0; left: 0; height: 4px; background: #38bdf8; transition: width 0.3s; z-index: 1000;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
         }
-        .step-pill {
-            background: #0ea5e9; color: white; padding: 2px 10px; border-radius: 99px; font-size: 0.7rem; font-weight: 800;
+        .tag-pill {
+            background: rgba(14, 165, 233, 0.2); color: #7dd3fc; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+        .grid-asset {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .flow-arrow {
+            color: #475569;
+            font-size: 1.5rem;
+            align-self: center;
         }
     </style>
 </head>
@@ -65,19 +88,69 @@
 
     <!-- P1: 封面 -->
     <div class="slide active">
-        <div class="text-center">
-            <h1 class="text-7xl font-black mb-6 animate__animated animate__fadeInDown title-gradient">
-                数据驱动未来
-            </h1>
-            <p class="text-3xl text-slate-400 mb-12 animate__animated animate__fadeInUp">打造阿里国际电商的“智能中枢”</p>
-            <div class="mt-20 border-t border-slate-800 pt-8 inline-block animate__animated animate__fadeIn">
+        <div class="text-center animate__animated animate__fadeIn">
+            <h1 class="text-7xl font-black mb-6 title-gradient tracking-tighter">数据驱动未来</h1>
+            <p class="text-3xl text-slate-400 mb-12 font-light">打造阿里国际电商的“智能中枢”</p>
+            <div class="mt-20 border-t border-slate-800 pt-8 inline-block">
                 <p class="text-xl font-medium">协明 | Ai Data 用户&营销</p>
-                <p class="text-slate-500 text-sm mt-2 uppercase tracking-widest">Global E-commerce Data Platform</p>
+                <p class="text-slate-500 text-xs mt-2 uppercase tracking-[0.5em]">Global E-commerce Data Platform</p>
             </div>
         </div>
     </div>
 
-    <!-- P2: 全景图 -->
+    <!-- P2: 总体概述架构 - 已更新业务层与数据层 -->
+    <div class="slide">
+        <h2 class="text-4xl font-bold mb-8 border-l-8 border-sky-500 pl-6">总体概述：AIDC 数据架构全景</h2>
+        <div class="space-y-4">
+            <!-- 应用层 -->
+            <div class="card bg-sky-900/10 border-sky-500/30">
+                <div class="flex items-center gap-4 mb-2">
+                    <span class="bg-sky-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded">数据应用层</span>
+                    <span class="text-xs text-sky-400 font-bold">赋能业务决策</span>
+                </div>
+                <div class="grid grid-cols-4 gap-4 text-xs">
+                    <div class="p-2 bg-white/5 rounded">商品智脑 | 消费者平台</div>
+                    <div class="p-2 bg-white/5 rounded">生意参谋 | BA/BAE</div>
+                    <div class="p-2 bg-white/5 rounded">DataMind | 商机Agent</div>
+                    <div class="p-2 bg-white/5 rounded">在线服务 (HSF/API)</div>
+                </div>
+            </div>
+            <!-- 资产层 -->
+            <div class="card border-indigo-500/30">
+                <div class="flex items-center gap-4 mb-2">
+                    <span class="bg-indigo-500 text-white text-[10px] font-black px-2 py-0.5 rounded">数据资产层</span>
+                    <span class="text-xs text-indigo-400 font-bold">核心价值沉淀</span>
+                </div>
+                <div class="grid grid-cols-4 gap-4 text-xs font-normal">
+                    <div class="p-3 border border-white/5 rounded bg-white/5 italic">用户资产：同人/基础/偏好/营销</div>
+                    <div class="p-3 border border-white/5 rounded bg-white/5 italic">商品资产：选品/比价/标品</div>
+                    <div class="p-3 border border-white/5 rounded bg-white/5 italic">商家资产：招养汰/档案</div>
+                    <div class="p-3 border border-white/5 rounded bg-white/5 italic">基础资产：流量/交易/广告/搜索</div>
+                </div>
+            </div>
+            <!-- 业务层与数据层 -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="card border-slate-700 bg-transparent flex flex-col justify-center">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-slate-700 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">核心业务层</span>
+                    </div>
+                    <p class="p-3 border border-white/5 rounded bg-white/5 italic">
+                        AliExpress | Lazada | Miravia | Daraz | Taobao 海外
+                    </p>
+                </div>
+                <div class="card border-slate-800 bg-slate-900/50 flex flex-col justify-center">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-slate-800 text-slate-400 text-[10px] font-black px-2 py-0.5 rounded border border-slate-700">业务数据源</span>
+                    </div>
+                    <p class="p-3 border border-white/5 rounded bg-white/5 italic">
+                        用户 | 商品 | 商家 | 交易 | 流量 | 广告 | 搜索 | 推荐 | 物流
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- P3: 全景图 -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-12 border-l-8 border-sky-500 pl-6">全景图：数据如何驱动商业</h2>
         <div class="flex justify-between items-center space-x-6 relative">
@@ -110,34 +183,181 @@
         </div>
     </div>
 
-    <!-- P3: OneData -->
+    <!-- P4: 领域资产-用户 (融合自第7页) -->
     <div class="slide">
-        <h2 class="text-4xl font-bold mb-10 border-l-8 border-indigo-500 pl-6">OneData：我们的共同语言</h2>
-        <div class="grid grid-cols-2 gap-10">
-            <div class="space-y-4">
-                <div class="card bg-indigo-900/20">
-                    <h4 class="font-bold text-indigo-400">ADS 应用层</h4>
-                    <p class="text-sm">赋能 DataMind、品规、意图 Agent</p>
+        <div class="flex justify-between items-end mb-8">
+            <h2 class="text-4xl font-bold border-l-8 border-sky-500 pl-6">领域资产：全站消费者画像</h2>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+            <div class="card space-y-4 border-t-4 border-sky-400">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-bold text-sky-400">Device 粒度</h4>
+                    <span class="text-[10px] opacity-40">基础/行为/风险</span>
                 </div>
-                <div class="card border-2 border-indigo-500">
-                    <h4 class="font-bold text-indigo-300">CDM 公共层 (Core)</h4>
-                    <p class="text-sm text-slate-200">统一汇率标准 (USD/CNY) / 跨时区自动映射</p>
-                </div>
-                <div class="card bg-slate-800/50">
-                    <h4 class="font-bold text-slate-400">ODS 贴源层</h4>
-                    <p class="text-sm">用户行为日志 / Binlog业务系统</p>
+                <div class="text-[11px] text-slate-400 leading-relaxed bg-black/20 p-3 rounded">
+                    覆盖设备站外基础属性、APP活跃偏好、兴趣标签、价值评分及作弊风险标识。
                 </div>
             </div>
-            <div class="flex flex-col justify-center">
-                <div class="p-8 bg-red-900/20 border-2 border-red-500/50 rounded-2xl text-center">
-                    <p class="text-3xl font-black text-red-500 mb-4">标准大于一切</p>
-                    <p class="text-slate-300">不符合规范的代码严禁上线</p>
+            <div class="card space-y-4 border-t-4 border-indigo-400">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-bold text-indigo-400">Relation 粒度</h4>
+                    <span class="text-[10px] opacity-40">图表征/关系链</span>
+                </div>
+                <div class="text-[11px] text-slate-400 leading-relaxed bg-black/20 p-3 rounded">
+                    核心建设：同人关系映射、社交传播关系、IP/地理区域关联，强化复杂环境下的用户识别。
+                </div>
+            </div>
+            <div class="card space-y-4 border-t-4 border-emerald-400">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-bold text-emerald-400">User 粒度</h4>
+                    <span class="text-[10px] opacity-40">核心营销资产</span>
+                </div>
+                <div class="text-[11px] text-slate-400 leading-relaxed bg-black/20 p-3 rounded">
+                    精细化刻画：基础属性、兴趣分层、生命周期价值、社交影响力。支撑精准圈选与PUSH。
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-6">
+            <div class="card bg-white/5 border-dashed border-white/10 text-xs italic text-slate-500">
+                数据来源：站内(交易/互动/日志) + 站外(PPC回流/外采数据)
+            </div>
+            <div class="card bg-sky-900/10 border-sky-500/20 text-xs text-sky-200">
+                应用场景：用增专题洞察、同人图表征强化、因果推断资产评估
+            </div>
+        </div>
+    </div>
+
+    <!-- P5: 领域资产-商家 (融合自第5页) -->
+    <div class="slide">
+        <h2 class="text-4xl font-bold mb-10 border-l-8 border-amber-500 pl-6">领域资产：商家 3+7 核心体系</h2>
+        <div class="grid grid-cols-4 gap-4">
+            <div class="col-span-1 space-y-4">
+                <div class="card bg-amber-500/10 border-amber-500/30">
+                    <p class="text-xs font-black text-amber-500 mb-2 uppercase">核心解决方案</p>
+                    <ul class="text-[11px] space-y-2 text-slate-300">
+                        <li>• 数智化招商</li>
+                        <li>• 数智化育商 SOP</li>
+                        <li>• 消费体验升级</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-span-3 card">
+                <p class="text-xs font-black text-slate-400 mb-4 uppercase">商家全生命周期资产矩阵 (3+7)</p>
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="p-3 bg-white/5 border border-white/5 rounded">
+                        <span class="tag-pill mb-2 inline-block">基础档案</span>
+                        <p class="text-[10px]">平台标签 / leads资质 / 产业带库</p>
+                    </div>
+                    <div class="p-3 bg-white/5 border border-white/5 rounded">
+                        <span class="tag-pill mb-2 inline-block">画像模型</span>
+                        <p class="text-[10px]">成熟度模型 / 分层体系 / 商家画像</p>
+                    </div>
+                    <div class="p-3 bg-white/5 border border-white/5 rounded">
+                        <span class="tag-pill mb-2 inline-block">策略沉淀</span>
+                        <p class="text-[10px]">育商策略库 / 劣品商档案 / 店群</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-6 card border-white/5 text-[10px] text-slate-500">
+            <p><span class="text-amber-500 font-bold mr-2">关键能力：</span>竞对标识识别 / 竞对GMV预测 / 公司归一识别 / 经营轨迹刻画 / 权益量化模型 / 风险归因分析</p>
+        </div>
+    </div>
+
+    <!-- P6: 领域资产-商品 (融合自第6页) -->
+    <div class="slide">
+        <h2 class="text-4xl font-bold mb-10 border-l-8 border-indigo-500 pl-6">领域资产：商品集市与经营链路</h2>
+        <div class="grid grid-cols-2 gap-10">
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold">01</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-bold">商机 & 选品</p>
+                        <p class="text-[10px] text-slate-500">商机Agent、竞争雷达、GCP全球选品</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold">02</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-bold">比价 & 定价</p>
+                        <p class="text-[10px] text-slate-500">比价360、价格竞争力模型、多币种映射</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold">03</div>
+                    <div class="flex-1">
+                        <p class="text-sm font-bold">经营诊断</p>
+                        <p class="text-[10px] text-slate-500">商品诊断Agent、行业决策驾驶舱</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card border-indigo-500/20 bg-indigo-500/5">
+                <p class="text-xs font-black text-indigo-400 mb-4 tracking-widest uppercase">商品域标签资产集市</p>
+                <div class="space-y-3">
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="text-[11px] text-slate-300">SKU 基础资产</span>
+                        <span class="text-[11px] text-slate-500">品质/簇/类目资产</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="text-[11px] text-slate-300">站外货通资产</span>
+                        <span class="text-[11px] text-slate-500">多语言对齐/比价标签</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="text-[11px] text-slate-300">基础设施</span>
+                        <span class="text-[11px] text-indigo-400 font-bold">DataMind 知识库</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- P4: 硬核底座 -->
+    <!-- P7: OneData 标准 (融合自第8-9页) -->
+    <div class="slide">
+        <h2 class="text-4xl font-bold mb-10 border-l-8 border-emerald-500 pl-6">OneData：分层体系与建模流程</h2>
+        <div class="grid grid-cols-2 gap-10">
+            <div class="space-y-4">
+                <div class="card border-l-4 border-sky-500">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-xs font-bold text-sky-400">ADM 应用层</span>
+                        <code class="text-[10px] opacity-40">adm_</code>
+                    </div>
+                    <p class="text-[10px] text-slate-400">面向业务需求，个性化组织统计口径。</p>
+                </div>
+                <div class="card border-l-4 border-emerald-500">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-xs font-bold text-emerald-400">CDM 公共层</span>
+                        <code class="text-[10px] opacity-40">dw_</code>
+                    </div>
+                    <p class="text-[10px] text-slate-400">核心表，汇总基础信息与公共指标，应用层唯一上游。</p>
+                </div>
+                <div class="card border-l-4 border-slate-500">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-xs font-bold text-slate-400">ODS 贴源层</span>
+                        <code class="text-[10px] opacity-40">s_</code>
+                    </div>
+                    <p class="text-[10px] text-slate-400">原始数据同步，不解析，不开放直接使用。</p>
+                </div>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <div class="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                    <p class="text-xs font-black text-emerald-500 mb-4 text-center uppercase tracking-wider">4步数仓建模流程</p>
+                    <div class="space-y-2 text-[11px] text-slate-300">
+                        <div class="flex items-center gap-2"><span class="w-4 h-4 bg-emerald-500 text-slate-900 rounded-full text-center leading-4 text-[10px]">1</span> 主体业务建模 (业务链路分析)</div>
+                        <div class="flex items-center gap-2"><span class="w-4 h-4 bg-emerald-500 text-slate-900 rounded-full text-center leading-4 text-[10px]">2</span> 主体概念建模 (ER模型/口径定义)</div>
+                        <div class="flex items-center gap-2"><span class="w-4 h-4 bg-emerald-500 text-slate-900 rounded-full text-center leading-4 text-[10px]">3</span> 主体逻辑建模 (维度下沉/明细表)</div>
+                        <div class="flex items-center gap-2"><span class="w-4 h-4 bg-emerald-500 text-slate-900 rounded-full text-center leading-4 text-[10px]">4</span> 主体物理建模 (AIDC模型开发)</div>
+                    </div>
+                </div>
+                <!-- 缩小后的警告模块 -->
+                <div class="p-5 bg-red-900/20 border border-red-500/50 rounded-2xl text-center">
+                    <p class="text-xl font-black text-red-500 mb-1">标准大于一切</p>
+                    <p class="text-[10px] text-slate-400">不符合规范的代码严禁上线</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- P8: 硬核底座 -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-12 border-l-8 border-sky-500 pl-6">硬核底座：计算与工程能力</h2>
         <div class="grid grid-cols-2 gap-12">
@@ -158,12 +378,9 @@
                 </ul>
             </div>
         </div>
-        <div class="mt-12 text-center text-slate-500 font-mono">
-            文化：没有数据支持的观点只是猜想 / 垃圾进，垃圾出
-        </div>
     </div>
 
-    <!-- P5: 提效实战 -->
+    <!-- P9: 提效实战 -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-12 border-l-8 border-emerald-500 pl-6">效率为王：DataMind 提效实战</h2>
         <div class="flex space-x-8">
@@ -176,33 +393,31 @@
                 <p class="text-slate-300 leading-relaxed">拒绝重复 SQL。AI 辅助生成标准化任务逻辑，提升 50% 以上研发效能。</p>
             </div>
         </div>
-        <div class="mt-12 text-center text-xl font-bold text-emerald-400">
-            “不做重复工作，将精力留给复杂架构”
-        </div>
     </div>
 
-    <!-- P6: 安全生产 -->
+    <!-- P10: 安全生产 -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-12 border-l-8 border-red-500 pl-6 text-red-500">敬畏每一行代码：安全生产</h2>
         <div class="bg-red-900/10 border-2 border-red-500/30 p-10 rounded-2xl">
             <h3 class="text-2xl font-bold mb-6">复盘：DQC 失效导致的“雪崩”</h3>
-            <div class="grid grid-cols-2 gap-10">
+            <div class="grid grid-cols-2 gap-10 text-sm">
                 <div>
-                    <p class="text-red-400 font-bold mb-2">过程：</p>
-                    <p class="text-sm text-slate-300 leading-loose">上游逻辑变更 → 笛卡尔积（100倍数据膨胀） → 脏数据灌入特征库 → 算法 OOM → 线上服务不可用。</p>
+                    <p class="text-red-400 font-bold mb-2">事故：</p>
+                    <p class="leading-loose">上游变更 → 笛卡尔积 → 脏数据灌入 → 算法 OOM → 服务崩溃。</p>
                 </div>
                 <div>
                     <p class="text-emerald-400 font-bold mb-2">铁律：</p>
-                    <ul class="text-sm text-slate-300 space-y-2">
-                        <li>• <span class="font-bold">强校验：</span>熔断阻断下游（宁可不更，不可写错）</li>
-                        <li>• <span class="font-bold">监控：</span>实时告警人工二次介入</li>
+                    <ul class="space-y-2">
+                        <li>• <span class="font-bold text-emerald-300">强校验：</span>熔断阻断下游</li>
+                        <li>• <span class="font-bold text-emerald-300">全监控：</span>异常即刻告警</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- P7-P9: AI 产品深度解析 (简略版) -->
+
+    <!-- P11: AI 产品深度解析 (简略版) -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-10 border-l-8 border-sky-500 pl-6">AI 驱动的数据化产品</h2>
         <div class="grid grid-cols-3 gap-6">
@@ -227,7 +442,8 @@
         </div>
     </div>
 
-    <!-- P10: 国际化合规 (重点回答 1) -->
+
+   <!-- P12: 国际化合规 (重点回答 1) -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-12 border-l-8 border-amber-500 pl-6">全球视野：合规与数据交换</h2>
         <div class="grid grid-cols-3 gap-6 items-center">
@@ -249,7 +465,7 @@
         </div>
     </div>
 
-    <!-- P11: 进化路径 (重点回答 2) -->
+    <!-- P13: 进化路径 (重点回答 2) -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-12 border-l-8 border-sky-500 pl-6">进化路径：AI 时代技术人竞争力</h2>
         <div class="flex space-x-12">
@@ -269,7 +485,7 @@
         </div>
     </div>
 
-    <!-- P12: 价值创造 (重点回答 3) -->
+    <!-- P14: 价值创造 (重点回答 3) -->
     <div class="slide">
         <h2 class="text-4xl font-bold mb-12 border-l-8 border-emerald-500 pl-6">价值创造：数据赋能切入点</h2>
         <div class="grid grid-cols-3 gap-8">
@@ -291,7 +507,7 @@
         </div>
     </div>
 
-    <!-- P13: 结语 -->
+    <!-- P15: 结语 -->
     <div class="slide">
         <div class="text-center">
             <h2 class="text-5xl font-black mb-12 animate__animated animate__pulse animate__infinite">Q&A</h2>
