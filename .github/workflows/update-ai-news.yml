@@ -1,0 +1,82 @@
+name: Update AI News
+
+on:
+  # 定时触发：每周一早上9点（UTC时间）
+  schedule:
+    - cron: '0 9 * * 1'
+  
+  # 手动触发
+  workflow_dispatch:
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install feedparser requests
+    
+    - name: Run update script
+      run: |
+        python scripts/update_ai_news.py
+    
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff --quiet data/ai-news.json; then
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+          echo "没有检测到数据变化"
+        else
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+          echo "检测到数据变化"
+        fi
+    
+    - name: Create Pull Request
+      if: steps.check_changes.outputs.has_changes == 'true'
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "chore: update AI news data [automated]"
+        title: "📰 自动更新：AI技术动态数据"
+        body: |
+          ## 🤖 自动更新的AI新闻数据
+          
+          此PR由GitHub Actions自动生成，包含最新的AI技术动态。
+          
+          ### 更新内容
+          - 抓取时间: ${{ github.event.repository.updated_at }}
+          - 数据来源: OpenAI, Anthropic, Google AI, Hugging Face等
+          
+          ### 审核清单
+          - [ ] 新闻内容准确无误
+          - [ ] 日期格式正确
+          - [ ] 来源链接可访问
+          - [ ] 无敏感或不当内容
+          
+          ### 操作
+          - 审核通过：合并此PR
+          - 需要修改：在此PR上提交修改
+          - 放弃更新：关闭此PR
+        
+        branch: auto-update/ai-news
+        delete-branch: true
+        base: main
+        labels: |
+          automated
+          ai-news
+          needs-review
