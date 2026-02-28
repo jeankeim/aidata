@@ -11,7 +11,8 @@
 本项目是一个**完整的大模型应用开发案例库**，包含：
 
 - ✅ **6大应用案例** - 从RAG到AI Agent的完整实现
-- ✅ **5种主流模型对比** - GPT-4/Claude/文心一言/DeepSeek/Gemini
+- ✅ **6种主流模型对比** - GPT-4/Claude/千问/文心一言/DeepSeek/Gemini
+- ✅ **国内模型适配** - 千问/文心一言/DeepSeek即插即用
 - ✅ **可直接运行的代码** - 500+行即插即用Python代码
 - ✅ **详细的开发指南** - 环境搭建、最佳实践、部署策略
 - ✅ **37个核心概念详解** - 从基础到进阶的系统知识
@@ -136,9 +137,48 @@ copy = suite.generate_copywriting(product_info)
 |------|------|---------|
 | **GPT-4** | 推理能力最强 | 复杂任务、代码生成 |
 | **Claude 3.5** | 性价比最优 | 安全敏感场景 |
-| **文心一言** | 中文理解最好 | 国内应用 |
+| **千问 (Qwen)** | 中文理解优秀、国内可用 | 国内应用、中文场景 |
+| **文心一言** | 百度生态、中文理解好 | 国内应用 |
 | **DeepSeek** | 成本最低 | 预算敏感项目 |
 | **Gemini** | 多模态能力 | 图文混合任务 |
+
+### 千问 (Qwen) 适配说明
+
+本项目已完整适配**阿里云通义千问**大模型，无需修改代码即可使用：
+
+```python
+from complete_llm_application_suite import LLMApplicationSuite
+
+# 使用千问大模型（默认）
+suite = LLMApplicationSuite(
+    api_key="your-qwen-api-key",
+    model="qwen-turbo",      # 可选: qwen-turbo, qwen-plus, qwen-max
+    provider="qwen"
+)
+
+# 所有功能与OpenAI版本完全一致
+answer = suite.quick_ask("什么是大语言模型？")
+code = suite.generate_code("创建一个Flask API", "Python")
+```
+
+**支持的千问模型：**
+| 模型 | 适用场景 | 特点 |
+|------|---------|------|
+| `qwen-turbo` | 日常对话、简单任务 | 速度快、成本低 |
+| `qwen-plus` | 复杂推理、代码生成 | 性能均衡 |
+| `qwen-max` | 高难度任务、专业场景 | 能力最强 |
+
+**获取API密钥：** [阿里云百炼平台](https://bailian.console.aliyun.com/)
+
+### 其他国内模型适配
+
+```python
+# 智谱AI (GLM-4)
+suite = LLMApplicationSuite(api_key, model="glm-4", provider="zhipu")
+
+# 文心一言
+suite = LLMApplicationSuite(api_key, model="ernie-bot", provider="baidu")
+```
 
 ### 模型选型决策树
 
@@ -147,9 +187,10 @@ copy = suite.generate_copywriting(product_info)
 │
 ├─ 性能最优 → GPT-4
 ├─ 成本最低 → DeepSeek
-├─ 中文理解 → 文心一言
+├─ 中文理解 → 千问 / 文心一言
 ├─ 安全隐私 → Claude 3.5
-└─ 多模态能力 → Gemini
+├─ 多模态能力 → Gemini
+└─ 国内可用 → 千问 / 文心一言 / DeepSeek
 ```
 
 ---
@@ -180,7 +221,7 @@ pip install faiss-cpu pinecone-client tiktoken
 | 代码行数 | 1000+ |
 | 文档字数 | 20000+ |
 | 应用案例 | 6个 |
-| 模型对比 | 5种 |
+| 模型对比 | 6种 |
 | 核心概念 | 37个 |
 | 代码示例 | 20+ |
 
@@ -189,7 +230,8 @@ pip install faiss-cpu pinecone-client tiktoken
 ## ⚡ 核心特性
 
 - ✅ **即插即用** - 完整的 `LLMApplicationSuite` 类，一行代码即可使用
-- ✅ **多模型支持** - 适配国内外主流大模型API
+- ✅ **多模型支持** - 适配OpenAI/千问/文心一言/DeepSeek等国内外主流大模型
+- ✅ **国内友好** - 千问/文心一言等国内模型无需翻墙，API稳定可用
 - ✅ **错误处理** - 完善的异常处理和重试机制
 - ✅ **日志系统** - 内置日志记录，便于调试和监控
 - ✅ **批量处理** - 支持批量任务处理，提高效率
