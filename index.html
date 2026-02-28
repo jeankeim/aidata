@@ -707,7 +707,7 @@ print(response.choices[0].message.content)</code></pre>
                 <div class="bg-gradient-to-r from-orange-50 to-yellow-50 border-l-4 border-orange-500 p-6 mb-8 rounded-lg">
                     <h3 class="text-xl font-semibold text-orange-900 mb-3">📚 大模型应用开发完整案例库</h3>
                     <p class="text-orange-800 mb-4">
-                        本项目包含6大应用案例的完整实现、5种主流模型的详细对比、开发指南和最佳实践，以及可直接运行的代码框架。
+                        本项目包含6大应用案例的完整实现、7种主流模型的详细对比（含千问/文心/DeepSeek等国内模型）、开发指南和最佳实践，以及可直接运行的代码框架。
                     </p>
                     <div class="grid md:grid-cols-3 gap-4 text-sm">
                         <div class="bg-white p-3 rounded">
@@ -715,8 +715,8 @@ print(response.choices[0].message.content)</code></pre>
                             从RAG到AI Agent全覆盖
                         </div>
                         <div class="bg-white p-3 rounded">
-                            <strong>5种模型对比</strong><br>
-                            GPT-4/Claude/文心等
+                            <strong>7种模型对比</strong><br>
+                            GPT-5.2/Claude 4/千问/文心等
                         </div>
                         <div class="bg-white p-3 rounded">
                             <strong>500+行代码</strong><br>
@@ -773,7 +773,7 @@ print(copy)</code></pre>
                     <p class="text-gray-600 mb-4">
                         <strong>应用场景：</strong>企业文档检索、法律咨询、医疗问诊<br>
                         <strong>核心技术：</strong>向量嵌入、相似度检索、上下文生成<br>
-                        <strong>推荐模型：</strong>GPT-4、Claude 3
+                        <strong>推荐模型：</strong>GPT-5.2、Claude 4、千问 Qwen3.5
                     </p>
                     <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
                         <pre><code># 核心代码
@@ -814,7 +814,7 @@ result = suite.generate_copywriting(product_info)
                     <p class="text-gray-600 mb-4">
                         <strong>应用场景：</strong>自动编程、测试生成、文档生成<br>
                         <strong>核心技术：</strong>代码理解、多语言支持、上下文学习<br>
-                        <strong>推荐模型：</strong>GPT-4、Claude 3.5、DeepSeek
+                        <strong>推荐模型：</strong>GPT-5.2、Claude 4、DeepSeek-R1、千问 Qwen3.5
                     </p>
                     <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
                         <pre><code># 代码生成
@@ -834,7 +834,7 @@ code = suite.generate_code(
                     <p class="text-gray-600 mb-4">
                         <strong>应用场景：</strong>自动化客服、售后支持、FAQ回答<br>
                         <strong>核心技术：</strong>多轮对话、意图识别、回复生成<br>
-                        <strong>推荐模型：</strong>GPT-3.5、文心一言
+                        <strong>推荐模型：</strong>千问 Qwen3.5、文心一言 6.0、DeepSeek-V4
                     </p>
                     <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
                         <pre><code># 创建客服机器人
@@ -870,7 +870,7 @@ result = suite.analyze_content(content)
                     <p class="text-gray-600 mb-4">
                         <strong>应用场景：</strong>工作流自动化、复杂任务处理<br>
                         <strong>核心技术：</strong>工具调用、推理链、任务规划<br>
-                        <strong>推荐模型：</strong>GPT-4、Claude 3.5
+                        <strong>推荐模型：</strong>GPT-5.2、Claude 4、千问 Qwen3.5
                     </p>
                     <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
                         <pre><code>from langchain.agents import initialize_agent
@@ -908,16 +908,17 @@ result = agent.run("任务描述")</code></pre>
                 <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
                     <div class="font-mono text-sm space-y-2">
                         <div class="font-semibold">你的项目优先考虑什么？</div>
-                        <div class="ml-4">├─ 性能最优 → <span class="text-blue-600 font-semibold">GPT-4</span></div>
-                        <div class="ml-4">├─ 成本最低 → <span class="text-green-600 font-semibold">DeepSeek</span></div>
-                        <div class="ml-4">├─ 中文理解 → <span class="text-purple-600 font-semibold">文心一言</span></div>
-                        <div class="ml-4">├─ 安全隐私 → <span class="text-orange-600 font-semibold">Claude 3.5</span></div>
-                        <div class="ml-4">└─ 多模态能力 → <span class="text-red-600 font-semibold">Gemini</span></div>
+                        <div class="ml-4">├─ 性能最优 → <span class="text-blue-600 font-semibold">GPT-5.2</span></div>
+                        <div class="ml-4">├─ 成本最低 → <span class="text-green-600 font-semibold">DeepSeek-V4 / GLM-5</span></div>
+                        <div class="ml-4">├─ 中文理解 → <span class="text-purple-600 font-semibold">千问 Qwen3.5 / 文心一言 6.0</span></div>
+                        <div class="ml-4">├─ 安全隐私 → <span class="text-orange-600 font-semibold">Claude 4</span></div>
+                        <div class="ml-4">├─ 多模态能力 → <span class="text-red-600 font-semibold">Gemini 3.0</span></div>
+                        <div class="ml-4">└─ 国内可用 → <span class="text-cyan-600 font-semibold">千问 / 文心 / DeepSeek</span></div>
                     </div>
                 </div>
 
                 <!-- 成本对比 -->
-                <h3 class="text-2xl font-semibold mb-4 text-orange-700">💰 成本对比（2026年）</h3>
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">💰 成本对比（2026年2月）</h3>
                 <div class="overflow-x-auto mb-8">
                     <table class="min-w-full bg-white border border-gray-200">
                         <thead>
@@ -930,34 +931,46 @@ result = agent.run("任务描述")</code></pre>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             <tr>
-                                <td class="px-6 py-4 font-medium">GPT-4</td>
-                                <td class="px-6 py-4">$0.03/1K tokens</td>
+                                <td class="px-6 py-4 font-medium">GPT-5.2</td>
+                                <td class="px-6 py-4">$0.015/1K tokens</td>
                                 <td class="px-6 py-4">$0.06/1K tokens</td>
-                                <td class="px-6 py-4">复杂推理</td>
+                                <td class="px-6 py-4">最强推理</td>
                             </tr>
                             <tr>
-                                <td class="px-6 py-4 font-medium">GPT-3.5</td>
-                                <td class="px-6 py-4">$0.0005/1K tokens</td>
-                                <td class="px-6 py-4">$0.0015/1K tokens</td>
-                                <td class="px-6 py-4">通用任务</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 font-medium">Claude 3.5</td>
+                                <td class="px-6 py-4 font-medium">Claude 4</td>
                                 <td class="px-6 py-4">$0.003/1K tokens</td>
                                 <td class="px-6 py-4">$0.015/1K tokens</td>
                                 <td class="px-6 py-4">安全敏感</td>
                             </tr>
                             <tr>
-                                <td class="px-6 py-4 font-medium">文心一言</td>
+                                <td class="px-6 py-4 font-medium">Gemini 3.0</td>
+                                <td class="px-6 py-4 text-green-600">免费</td>
+                                <td class="px-6 py-4 text-green-600">免费</td>
+                                <td class="px-6 py-4">多模态</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">千问 Qwen3.5</td>
+                                <td class="px-6 py-4">¥0.002-0.008/1K tokens</td>
+                                <td class="px-6 py-4">¥0.006-0.016/1K tokens</td>
+                                <td class="px-6 py-4">中文场景</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">文心一言 6.0</td>
                                 <td class="px-6 py-4">¥0.008/1K tokens</td>
                                 <td class="px-6 py-4">¥0.016/1K tokens</td>
                                 <td class="px-6 py-4">中文场景</td>
                             </tr>
                             <tr>
-                                <td class="px-6 py-4 font-medium">DeepSeek</td>
-                                <td class="px-6 py-4">¥0.001/1K tokens</td>
-                                <td class="px-6 py-4">¥0.002/1K tokens</td>
+                                <td class="px-6 py-4 font-medium">DeepSeek-V4</td>
+                                <td class="px-6 py-4 text-green-600">¥0.001/1K tokens</td>
+                                <td class="px-6 py-4 text-green-600">¥0.002/1K tokens</td>
                                 <td class="px-6 py-4">成本敏感</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">GLM-5</td>
+                                <td class="px-6 py-4 text-green-600">¥0.0001/1K tokens</td>
+                                <td class="px-6 py-4 text-green-600">¥0.005/1K tokens</td>
+                                <td class="px-6 py-4">极低价格</td>
                             </tr>
                         </tbody>
                     </table>
