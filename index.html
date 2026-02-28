@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大语言模型入门手册 - 团队新人指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .code-block {
+            background: #1e1e2e;
+            color: #e4e4e7;
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            color: #e4e4e7;
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .nav-link {
+            transition: all 0.2s;
+        }
+        .nav-link:hover {
+            color: #667eea;
+            padding-left: 0.5rem;
+        }
+        .section-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">LLM Handbook</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#chapter1" class="text-gray-600 hover:text-indigo-600">基础</a>
+                    <a href="#chapter2" class="text-gray-600 hover:text-indigo-600">原理</a>
+                    <a href="#chapter3" class="text-gray-600 hover:text-indigo-600">实践</a>
+                    <a href="#chapter4" class="text-gray-600 hover:text-indigo-600">进阶</a>
+                    <a href="#chapter5" class="text-gray-600 hover:text-indigo-600">实战</a>
+                    <a href="#team-practice" class="text-gray-600 hover:text-indigo-600">团队</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                大语言模型<br>
+                <span class="gradient-text">入门手册</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">团队新人指南 · 从入门到掌握</p>
+            <div class="flex justify-center gap-4">
+                <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm">零基础友好</span>
+                <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm">系统全面</span>
+                <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm">实践导向</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">目录</h2>
+            
+            <!-- 概念详解入口 -->
+            <div class="mb-6 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-semibold text-indigo-900 mb-2">📚 核心概念详解</h3>
+                        <p class="text-indigo-700">41个关键概念 + 生动例子 + 实际应用，帮助你深入理解每个技术点</p>
+                    </div>
+                    <a href="concepts.html" class="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition">
+                        查看详情 →
+                    </a>
+                </div>
+            </div>
+
+            <!-- 深度问答入口 -->
+            <div class="mb-8 p-6 bg-gradient-to-r from-rose-50 to-orange-50 rounded-xl border border-rose-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-semibold text-rose-900 mb-2">❓ 深度问答</h3>
+                        <p class="text-rose-700">13个核心问题 · 完整解答 · 深入理解</p>
+                    </div>
+                    <a href="qa.html" class="px-6 py-3 bg-rose-600 text-white rounded-lg font-semibold hover:bg-rose-700 transition">
+                        查看详情 →
+                    </a>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="#chapter1" class="section-card p-6 bg-gray-50 rounded-xl border border-gray-100">
+                    <div class="text-indigo-600 font-bold mb-2">第一章</div>
+                    <h3 class="text-xl font-semibold mb-2">基础认知</h3>
+                    <p class="text-gray-600 text-sm">什么是大语言模型、发展历程、核心能力</p>
+                </a>
+                <a href="#chapter2" class="section-card p-6 bg-gray-50 rounded-xl border border-gray-100">
+                    <div class="text-purple-600 font-bold mb-2">第二章</div>
+                    <h3 class="text-xl font-semibold mb-2">核心原理</h3>
+                    <p class="text-gray-600 text-sm">Transformer架构、预训练、微调、对齐技术</p>
+                </a>
+                <a href="#chapter3" class="section-card p-6 bg-gray-50 rounded-xl border border-gray-100">
+                    <div class="text-blue-600 font-bold mb-2">第三章</div>
+                    <h3 class="text-xl font-semibold mb-2">实践应用</h3>
+                    <p class="text-gray-600 text-sm">API调用、Prompt工程、RAG、Agent开发</p>
+                </a>
+                <a href="#chapter4" class="section-card p-6 bg-gray-50 rounded-xl border border-gray-100">
+                    <div class="text-green-600 font-bold mb-2">第四章</div>
+                    <h3 class="text-xl font-semibold mb-2">进阶掌握</h3>
+                    <p class="text-gray-600 text-sm">模型优化、部署方案、前沿趋势</p>
+                </a>
+                <a href="#chapter5" class="section-card p-6 bg-gray-50 rounded-xl border border-gray-100">
+                    <div class="text-orange-600 font-bold mb-2">第五章</div>
+                    <h3 class="text-xl font-semibold mb-2">实战案例</h3>
+                    <p class="text-gray-600 text-sm">6大应用案例、模型选型、成本优化、部署指南</p>
+                </a>
+                <a href="#team-practice" class="section-card p-6 bg-gray-50 rounded-xl border border-gray-100">
+                    <div class="text-teal-600 font-bold mb-2">附录</div>
+                    <h3 class="text-xl font-semibold mb-2">团队实践</h3>
+                    <p class="text-gray-600 text-sm">使用规范、成本控制、安全注意</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 1: 基础认知 -->
+    <section id="chapter1" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center mb-8">
+                <span class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-xl mr-4">01</span>
+                <h2 class="text-4xl font-bold">基础认知</h2>
+            </div>
+            
+            <div class="prose prose-lg max-w-none">
+                <h3 class="text-2xl font-semibold mb-4 text-indigo-700">1.1 什么是大语言模型？</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    <strong>大语言模型（Large Language Model, LLM）</strong>是一种基于深度学习的大规模神经网络，
+                    能够理解和生成自然语言。它的"大"体现在两个方面：模型参数量巨大（数十亿到数千亿），
+                    训练数据量庞大（互联网上的海量文本）。
+                    <a href="concepts.html#basic" class="text-indigo-600 hover:underline ml-2">📖 详细解释 →</a>
+                </p>
+
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8">
+                    <h4 class="font-semibold text-indigo-900 mb-2">关键特征</h4>
+                    <ul class="list-disc list-inside text-indigo-800 space-y-2">
+                        <li><strong>参数量巨大</strong>：从数十亿到数千亿个参数</li>
+                        <li><strong>海量预训练</strong>：在互联网文本、书籍、代码上训练</li>
+                        <li><strong>涌现能力</strong>：规模达到一定程度后出现意想不到的能力</li>
+                        <li><strong>上下文学习</strong>：通过示例学习新任务，无需重新训练</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-indigo-700">1.2 发展历程</h3>
+                <div class="relative border-l-2 border-indigo-200 ml-4 mb-8">
+                    <div class="mb-8 ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-indigo-500 rounded-full"></span>
+                        <h4 class="font-semibold">2017 - Transformer架构</h4>
+                        <p class="text-gray-600">Google发布《Attention is All You Need》，提出Transformer架构</p>
+                    </div>
+                    <div class="mb-8 ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-indigo-500 rounded-full"></span>
+                        <h4 class="font-semibold">2018 - BERT</h4>
+                        <p class="text-gray-600">双向编码器表示，开启预训练+微调范式</p>
+                    </div>
+                    <div class="mb-8 ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-indigo-500 rounded-full"></span>
+                        <h4 class="font-semibold">2020 - GPT-3</h4>
+                        <p class="text-gray-600">1750亿参数，展现惊人的少样本学习能力</p>
+                    </div>
+                    <div class="mb-8 ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-indigo-500 rounded-full"></span>
+                        <h4 class="font-semibold">2022 - ChatGPT</h4>
+                        <p class="text-gray-600">指令微调和RLHF，让大模型真正可用</p>
+                    </div>
+                    <div class="ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-indigo-600 rounded-full"></span>
+                        <h4 class="font-semibold">2023-2024 - 多模态时代</h4>
+                        <p class="text-gray-600">GPT-4、Claude 3、文心一言等，支持文本、图像、音频</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-indigo-700">1.3 核心能力</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-lg mb-2">📝 文本生成</h4>
+                        <p class="text-gray-600">写文章、故事、诗歌、营销文案、代码注释</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-lg mb-2">💬 对话交互</h4>
+                        <p class="text-gray-600">多轮对话、上下文理解、个性化回复</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-lg mb-2">🔍 问答理解</h4>
+                        <p class="text-gray-600">回答问题、文档摘要、信息提取</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-lg mb-2">💻 代码辅助</h4>
+                        <p class="text-gray-600">代码生成、代码审查、Bug修复、解释代码</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-lg mb-2">🧠 推理分析</h4>
+                        <p class="text-gray-600">逻辑推理、数学计算、数据分析、决策建议</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-lg mb-2">🌐 翻译转换</h4>
+                        <p class="text-gray-600">多语言翻译、格式转换、风格改写</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-indigo-700">1.4 应用场景</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">领域</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">应用</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">示例</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 font-medium">内容创作</td>
+                                <td class="px-6 py-4">文案、营销、小说</td>
+                                <td class="px-6 py-4">自动生成产品描述、营销邮件</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">编程开发</td>
+                                <td class="px-6 py-4">代码生成、审查</td>
+                                <td class="px-6 py-4">GitHub Copilot辅助编程</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">客户服务</td>
+                                <td class="px-6 py-4">智能客服、FAQ</td>
+                                <td class="px-6 py-4">24/7在线客服机器人</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">教育培训</td>
+                                <td class="px-6 py-4">个性化辅导</td>
+                                <td class="px-6 py-4">AI家教、作业批改</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">数据分析</td>
+                                <td class="px-6 py-4">报告生成、洞察</td>
+                                <td class="px-6 py-4">自动分析销售数据并生成报告</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 2: 核心原理 -->
+    <section id="chapter2" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center mb-8">
+                <span class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold text-xl mr-4">02</span>
+                <h2 class="text-4xl font-bold">核心原理</h2>
+            </div>
+
+            <div class="prose prose-lg max-w-none">
+                <h3 class="text-2xl font-semibold mb-4 text-purple-700">2.1 Transformer架构</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    Transformer是大语言模型的核心架构，它完全基于<strong>注意力机制（Attention）</strong>，
+                    摒弃了传统的RNN和CNN结构。这种设计使得模型可以并行处理序列数据，大大提高了训练效率。
+                    <a href="concepts.html#architecture" class="text-purple-600 hover:underline ml-2">📖 详细解释 →</a>
+                </p>
+
+                <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8 font-mono text-sm">
+                    <div class="text-green-400 mb-2"># Transformer核心组件</div>
+                    <div class="text-gray-400">Transformer Architecture:</div>
+                    <div class="ml-4">
+                        <div class="text-yellow-400">├── 输入嵌入 (Input Embedding)</div>
+                        <div class="text-yellow-400">├── 位置编码 (Positional Encoding)</div>
+                        <div class="text-yellow-400">├── 编码器层 x N (Encoder Layers)</div>
+                        <div class="text-yellow-400">│   ├── 多头自注意力 (Multi-Head Self-Attention)</div>
+                        <div class="text-yellow-400">│   ├── 前馈网络 (Feed-Forward Network)</div>
+                        <div class="text-yellow-400">│   └── 层归一化 (Layer Normalization)</div>
+                        <div class="text-yellow-400">├── 解码器层 x N (Decoder Layers)</div>
+                        <div class="text-yellow-400">│   ├── 掩码自注意力 (Masked Self-Attention)</div>
+                        <div class="text-yellow-400">│   ├── 交叉注意力 (Cross-Attention)</div>
+                        <div class="text-yellow-400">│   └── 前馈网络 (Feed-Forward Network)</div>
+                        <div class="text-yellow-400">└── 输出层 (Output Layer)</div>
+                    </div>
+                </div>
+
+                <h4 class="text-xl font-semibold mb-3 text-purple-700">注意力机制</h4>
+                <p class="text-gray-700 mb-4">
+                    注意力机制让模型能够关注输入序列的不同部分。想象一下阅读时，你的眼睛会重点关注关键词，
+                    而不是每个词都同等对待。
+                </p>
+
+                <div class="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
+                    <h4 class="font-semibold text-purple-900 mb-2">核心思想</h4>
+                    <p class="text-purple-800">
+                        对于序列中的每个位置，计算它与其他所有位置的"相关性分数"，
+                        然后根据这些分数加权求和，得到该位置的表示。
+                    </p>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-purple-700">2.2 预训练（Pre-training）</h3>
+                <p class="text-gray-700 mb-6">
+                    预训练是大语言模型的"学习阶段"。模型在海量无标注文本上通过<strong>自监督学习</strong>，
+                    自动学习语言的结构、语法、语义和世界知识。
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2 text-purple-600">GPT-style (自回归)</h4>
+                        <p class="text-gray-600 mb-2">预测下一个词</p>
+                        <div class="code-block text-sm">
+                            <span class="text-green-400">输入:</span> "今天天气很"<br>
+                            <span class="text-blue-400">预测:</span> "好" → "，" → "适合" → "散步"
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2 text-purple-600">BERT-style (掩码)</h4>
+                        <p class="text-gray-600 mb-2">预测被遮盖的词</p>
+                        <div class="code-block text-sm">
+                            <span class="text-green-400">输入:</span> "今天 [MASK] 很好"<br>
+                            <span class="text-blue-400">预测:</span> [MASK] = "天气"
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-purple-700">2.3 微调（Fine-tuning）</h3>
+                <p class="text-gray-700 mb-6">
+                    预训练后的模型具备通用语言能力，但需要针对特定任务进行<strong>微调</strong>，
+                    才能在具体场景下表现良好。
+                </p>
+
+                <div class="overflow-x-auto mb-8">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead>
+                            <tr class="bg-purple-50">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">微调方法</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">说明</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 font-medium">全参数微调</td>
+                                <td class="px-6 py-4">更新所有参数</td>
+                                <td class="px-6 py-4">数据充足，计算资源充裕</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">LoRA</td>
+                                <td class="px-6 py-4">低秩适配，只训练少量参数</td>
+                                <td class="px-6 py-4">资源有限，快速实验</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">Prompt Tuning</td>
+                                <td class="px-6 py-4">优化输入提示</td>
+                                <td class="px-6 py-4">轻量级适配</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">指令微调</td>
+                                <td class="px-6 py-4">用指令-回复对训练</td>
+                                <td class="px-6 py-4">让模型遵循指令</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-purple-700">2.4 对齐技术（Alignment）</h3>
+                <p class="text-gray-700 mb-6">
+                    让模型的输出符合人类价值观和偏好，避免生成有害、偏见或不真实的内容。
+                </p>
+
+                <div class="bg-white p-6 rounded-lg border border-gray-200 mb-8">
+                    <h4 class="font-semibold mb-4">RLHF（人类反馈强化学习）</h4>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li><strong>监督微调（SFT）</strong>：在人类标注的高质量对话数据上微调</li>
+                        <li><strong>奖励模型训练</strong>：训练模型预测人类偏好</li>
+                        <li><strong>强化学习优化</strong>：使用PPO等算法优化策略</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 3: 实践应用 -->
+    <section id="chapter3" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center mb-8">
+                <span class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl mr-4">03</span>
+                <h2 class="text-4xl font-bold">实践应用</h2>
+            </div>
+
+            <div class="prose prose-lg max-w-none">
+                <h3 class="text-2xl font-semibold mb-4 text-blue-700">3.1 API调用入门</h3>
+                <p class="text-gray-700 mb-6">
+                    最简单的方式是通过API调用大语言模型。以下是使用OpenAI API的示例：
+                    <a href="concepts.html#application" class="text-blue-600 hover:underline ml-2">📖 应用技术详解 →</a>
+                </p>
+
+                <div class="code-block text-gray-100 mb-8">
+                    <div class="text-gray-400 mb-2"># Python示例</div>
+                    <pre><code>import openai
+
+# 设置API密钥
+openai.api_key = "your-api-key"
+
+# 调用ChatGPT
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "你是一位专业的技术顾问"},
+        {"role": "user", "content": "解释什么是大语言模型"}
+    ],
+    temperature=0.7,
+    max_tokens=500
+)
+
+print(response.choices[0].message.content)</code></pre>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-blue-700">3.2 Prompt工程</h3>
+                <p class="text-gray-700 mb-6">
+                    Prompt工程是设计和优化输入提示，以获得更好输出的技术。
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-blue-900 mb-3">✅ 好的Prompt技巧</h4>
+                        <ul class="space-y-2 text-blue-800">
+                            <li>• 明确角色设定</li>
+                            <li>• 提供上下文信息</li>
+                            <li>• 使用Few-shot示例</li>
+                            <li>• 指定输出格式</li>
+                            <li>• 分解复杂任务</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-red-900 mb-3">❌ 避免的写法</h4>
+                        <ul class="space-y-2 text-red-800">
+                            <li>• 过于模糊的请求</li>
+                            <li>• 没有上下文</li>
+                            <li>• 一次性要求太多</li>
+                            <li>• 不指定格式</li>
+                            <li>• 假设模型知道背景</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                    <div class="text-green-400 mb-2"># Prompt示例对比</div>
+                    <div class="mb-4">
+                        <div class="text-red-400">❌ 差的Prompt：</div>
+                        <div class="text-gray-400">"写个代码"</div>
+                    </div>
+                    <div>
+                        <div class="text-green-400">✅ 好的Prompt：</div>
+                        <div class="text-gray-300">
+                            角色：你是一位Python专家<br>
+                            任务：写一个函数，接收一个列表，返回去重后的列表<br>
+                            要求：保持原有顺序，时间复杂度O(n)<br>
+                            输出：代码+解释
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-blue-700">3.3 RAG（检索增强生成）</h3>
+                <p class="text-gray-700 mb-6">
+                    RAG让大模型能够基于外部知识回答问题，减少幻觉，提高准确性。
+                </p>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold text-blue-900 mb-4">RAG工作流程</h4>
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-2">1</div>
+                            <p class="text-sm text-blue-800">用户提问</p>
+                        </div>
+                        <div class="text-blue-400">→</div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-2">2</div>
+                            <p class="text-sm text-blue-800">检索相关文档</p>
+                        </div>
+                        <div class="text-blue-400">→</div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-2">3</div>
+                            <p class="text-sm text-blue-800">拼接上下文</p>
+                        </div>
+                        <div class="text-blue-400">→</div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-2">4</div>
+                            <p class="text-sm text-blue-800">生成回答</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-blue-700">3.4 Agent开发</h3>
+                <p class="text-gray-700 mb-6">
+                    Agent是能够自主规划和执行任务的AI系统，它可以调用工具、访问外部API、进行多步推理。
+                </p>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+                    <h4 class="font-semibold mb-4">Agent核心组件</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-start">
+                            <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <div>
+                                <h5 class="font-medium">规划（Planning）</h5>
+                                <p class="text-sm text-gray-600">分解任务，制定执行计划</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <div>
+                                <h5 class="font-medium">记忆（Memory）</h5>
+                                <p class="text-sm text-gray-600">短期/长期记忆管理</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <div>
+                                <h5 class="font-medium">工具使用（Tools）</h5>
+                                <p class="text-sm text-gray-600">调用外部API、执行代码</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <div>
+                                <h5 class="font-medium">反思（Reflection）</h5>
+                                <p class="text-sm text-gray-600">自我纠错、优化策略</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-blue-700">3.5 常用开发框架</h3>
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                        <h4 class="font-semibold text-lg mb-2">LangChain</h4>
+                        <p class="text-gray-600 text-sm">构建LLM应用的主流框架，提供链式调用、记忆管理、工具集成</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                        <h4 class="font-semibold text-lg mb-2">LlamaIndex</h4>
+                        <p class="text-gray-600 text-sm">专注于数据索引和检索，RAG应用的首选</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                        <h4 class="font-semibold text-lg mb-2">Hugging Face</h4>
+                        <p class="text-gray-600 text-sm">开源模型库，提供Transformers库和大量预训练模型</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 4: 进阶掌握 -->
+    <section id="chapter4" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center mb-8">
+                <span class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-xl mr-4">04</span>
+                <h2 class="text-4xl font-bold">进阶掌握</h2>
+            </div>
+
+            <div class="prose prose-lg max-w-none">
+                <h3 class="text-2xl font-semibold mb-4 text-green-700">4.1 模型优化技术</h3>
+                <p class="text-gray-700 mb-6">
+                    大模型部署需要考虑性能和成本，以下是常用的优化技术：
+                    <a href="concepts.html#optimization" class="text-green-600 hover:underline ml-2">📖 优化技术详解 →</a>
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2 text-green-600">量化 (Quantization)</h4>
+                        <p class="text-gray-600 mb-2">将模型权重从FP32/FP16转换为INT8/INT4</p>
+                        <ul class="text-sm text-gray-500">
+                            <li>• 减少显存占用 50-75%</li>
+                            <li>• 推理速度提升</li>
+                            <li>• 轻微精度损失</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2 text-green-600">知识蒸馏 (Distillation)</h4>
+                        <p class="text-gray-600 mb-2">大模型教小模型，保留能力减小体积</p>
+                        <ul class="text-sm text-gray-500">
+                            <li>• 模型大小减少90%</li>
+                            <li>• 推理速度大幅提升</li>
+                            <li>• 适合边缘部署</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-green-700">4.2 部署方案</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead>
+                            <tr class="bg-green-50">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">方案</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">特点</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 font-medium">云端API</td>
+                                <td class="px-6 py-4">OpenAI、Claude、文心一言等<br>无需维护，按量付费</td>
+                                <td class="px-6 py-4">快速启动、小规模应用</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">私有化部署</td>
+                                <td class="px-6 py-4">vLLM、TGI、llama.cpp<br>数据安全，完全控制</td>
+                                <td class="px-6 py-4">企业应用、数据敏感场景</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">边缘部署</td>
+                                <td class="px-6 py-4">模型压缩后在本地运行<br>低延迟，无需网络</td>
+                                <td class="px-6 py-4">移动应用、IoT设备</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-green-700">4.3 前沿趋势</h3>
+                <div class="space-y-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2">🔮 多模态大模型</h4>
+                        <p class="text-gray-600">同时处理文本、图像、音频、视频。代表：GPT-4V、Claude 3、Gemini</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2">📏 长上下文窗口</h4>
+                        <p class="text-gray-600">从4K到100K甚至百万token，支持处理整本书、大型代码库</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2">🤖 AI Agent生态</h4>
+                        <p class="text-gray-600">AutoGPT、MetaGPT等自主Agent，能够完成复杂多步骤任务</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-2">⚡ 效率优化</h4>
+                        <p class="text-gray-600">Mixture of Experts (MoE)、投机解码等技术降低推理成本</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-green-700">4.4 学习资源推荐</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-3">📚 必读论文</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Attention Is All You Need (Transformer)</li>
+                            <li>• BERT: Pre-training of Deep Bidirectional Transformers</li>
+                            <li>• Language Models are Few-Shot Learners (GPT-3)</li>
+                            <li>• Training language models to follow instructions (InstructGPT)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-3">🎓 优质课程</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 吴恩达《Generative AI for Everyone》</li>
+                            <li>• 李宏毅《生成式AI导论》</li>
+                            <li>• Stanford CS224N (NLP with Deep Learning)</li>
+                            <li>• Fast.ai《Practical Deep Learning》</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter 5: 实战案例 -->
+    <section id="chapter5" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center mb-8">
+                <span class="w-12 h-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center font-bold text-xl mr-4">05</span>
+                <h2 class="text-4xl font-bold">实战案例</h2>
+            </div>
+
+            <div class="prose prose-lg max-w-none">
+                <!-- 项目概述 -->
+                <div class="bg-gradient-to-r from-orange-50 to-yellow-50 border-l-4 border-orange-500 p-6 mb-8 rounded-lg">
+                    <h3 class="text-xl font-semibold text-orange-900 mb-3">📚 大模型应用开发完整案例库</h3>
+                    <p class="text-orange-800 mb-4">
+                        本项目包含6大应用案例的完整实现、5种主流模型的详细对比、开发指南和最佳实践，以及可直接运行的代码框架。
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-white p-3 rounded">
+                            <strong>6大应用案例</strong><br>
+                            从RAG到AI Agent全覆盖
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <strong>5种模型对比</strong><br>
+                            GPT-4/Claude/文心等
+                        </div>
+                        <div class="bg-white p-3 rounded">
+                            <strong>500+行代码</strong><br>
+                            即插即用的框架
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5分钟快速启动 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">🚀 5分钟快速启动</h3>
+                
+                <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-6">
+                    <div class="text-green-400 mb-2"># 第1步：安装依赖（1分钟）</div>
+                    <pre><code>pip install langchain openai python-dotenv
+pip install faiss-cpu  # 用于RAG应用</code></pre>
+                </div>
+
+                <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-6">
+                    <div class="text-green-400 mb-2"># 第2步：配置API密钥（1分钟）</div>
+                    <pre><code># 创建 .env 文件
+echo "OPENAI_API_KEY=your-key-here" > .env</code></pre>
+                </div>
+
+                <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                    <div class="text-green-400 mb-2"># 第3步：导入并使用（3分钟）</div>
+                    <pre><code>from complete_llm_application_suite import LLMApplicationSuite
+import os
+
+suite = LLMApplicationSuite(os.getenv('OPENAI_API_KEY'))
+
+# 快速问答
+answer = suite.quick_ask("大模型是什么？")
+print(answer)
+
+# 生成文案
+product = {
+    "name": "AI助手",
+    "features": "自动化、智能回复",
+    "audience": "企业用户"
+}
+copy = suite.generate_copywriting(product)
+print(copy)</code></pre>
+                </div>
+
+                <!-- 6大应用案例 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">🎯 6大应用案例详解</h3>
+
+                <!-- 案例1：RAG -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h4 class="text-xl font-semibold text-gray-900">1️⃣ 知识库问答系统 (RAG)</h4>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">企业级</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>应用场景：</strong>企业文档检索、法律咨询、医疗问诊<br>
+                        <strong>核心技术：</strong>向量嵌入、相似度检索、上下文生成<br>
+                        <strong>推荐模型：</strong>GPT-4、Claude 3
+                    </p>
+                    <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
+                        <pre><code># 核心代码
+from langchain.chains import RetrievalQA
+
+qa = RetrievalQA.from_chain_type(
+    llm, 
+    retriever=vector_store.as_retriever()
+)
+result = qa.run("问题")</code></pre>
+                    </div>
+                </div>
+
+                <!-- 案例2：文案生成 -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h4 class="text-xl font-semibold text-gray-900">2️⃣ 文案创意生成</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">低成本</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>应用场景：</strong>商业文案、营销创意、内容营销<br>
+                        <strong>核心技术：</strong>提示词工程、文本生成、风格转换<br>
+                        <strong>推荐模型：</strong>GPT-3.5、Claude
+                    </p>
+                    <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
+                        <pre><code># 使用 LLMApplicationSuite
+result = suite.generate_copywriting(product_info)
+# 自动生成标题、正文、号召性用语</code></pre>
+                    </div>
+                </div>
+
+                <!-- 案例3：代码生成 -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h4 class="text-xl font-semibold text-gray-900">3️⃣ 代码生成与开发助手</h4>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">高价值</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>应用场景：</strong>自动编程、测试生成、文档生成<br>
+                        <strong>核心技术：</strong>代码理解、多语言支持、上下文学习<br>
+                        <strong>推荐模型：</strong>GPT-4、Claude 3.5、DeepSeek
+                    </p>
+                    <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
+                        <pre><code># 代码生成
+code = suite.generate_code(
+    requirement="创建Flask API返回当前时间",
+    language="Python"
+)</code></pre>
+                    </div>
+                </div>
+
+                <!-- 案例4：智能客服 -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h4 class="text-xl font-semibold text-gray-900">4️⃣ 智能客服系统</h4>
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">24/7</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>应用场景：</strong>自动化客服、售后支持、FAQ回答<br>
+                        <strong>核心技术：</strong>多轮对话、意图识别、回复生成<br>
+                        <strong>推荐模型：</strong>GPT-3.5、文心一言
+                    </p>
+                    <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
+                        <pre><code># 创建客服机器人
+bot = suite.create_customer_service_bot(company_context)
+response = bot("用户问题")</code></pre>
+                    </div>
+                </div>
+
+                <!-- 案例5：内容分析 -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h4 class="text-xl font-semibold text-gray-900">5️⃣ 内容分析与摘要</h4>
+                        <span class="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm">高效</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>应用场景：</strong>论文摘要、新闻概括、情感分析<br>
+                        <strong>核心技术：</strong>文本理解、信息抽取、摘要生成<br>
+                        <strong>推荐模型：</strong>GPT-3.5、Claude
+                    </p>
+                    <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
+                        <pre><code># 内容分析
+result = suite.analyze_content(content)
+# 返回摘要、关键词、情感、主要观点</code></pre>
+                    </div>
+                </div>
+
+                <!-- 案例6：AI Agent -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 mb-8">
+                    <div class="flex items-start justify-between mb-4">
+                        <h4 class="text-xl font-semibold text-gray-900">6️⃣ AI Agent智能助手</h4>
+                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">高级</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>应用场景：</strong>工作流自动化、复杂任务处理<br>
+                        <strong>核心技术：</strong>工具调用、推理链、任务规划<br>
+                        <strong>推荐模型：</strong>GPT-4、Claude 3.5
+                    </p>
+                    <div class="bg-gray-800 text-gray-100 p-4 rounded-lg text-sm">
+                        <pre><code>from langchain.agents import initialize_agent
+
+agent = initialize_agent(
+    tools, llm, 
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION
+)
+result = agent.run("任务描述")</code></pre>
+                    </div>
+                </div>
+
+                <!-- 完整代码框架 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">💻 完整代码框架</h3>
+                <p class="text-gray-700 mb-4">
+                    <code>complete_llm_application_suite.py</code> 提供了即插即用的LLMApplicationSuite类，包含7个应用方法：
+                </p>
+                <div class="bg-gray-800 text-gray-100 p-6 rounded-lg mb-8">
+                    <div class="text-green-400 mb-2"># LLMApplicationSuite 类结构</div>
+                    <pre><code>class LLMApplicationSuite:
+    def __init__(self, api_key: str, model: str = "gpt-3.5-turbo")
+    
+    # 7大应用方法
+    def create_customer_service_bot(self, company_context)  # 智能客服
+    def analyze_content(self, content)                      # 内容分析
+    def generate_code(self, requirement, language)          # 代码生成
+    def generate_copywriting(self, product_info)            # 文案生成
+    def generate_learning_content(self, topic, level)       # 学习内容
+    def quick_ask(self, question, context)                  # 快速问答
+    def batch_process(self, tasks)                          # 批量处理</code></pre>
+                </div>
+
+                <!-- 模型选型决策树 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">🌳 模型选型决策树</h3>
+                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+                    <div class="font-mono text-sm space-y-2">
+                        <div class="font-semibold">你的项目优先考虑什么？</div>
+                        <div class="ml-4">├─ 性能最优 → <span class="text-blue-600 font-semibold">GPT-4</span></div>
+                        <div class="ml-4">├─ 成本最低 → <span class="text-green-600 font-semibold">DeepSeek</span></div>
+                        <div class="ml-4">├─ 中文理解 → <span class="text-purple-600 font-semibold">文心一言</span></div>
+                        <div class="ml-4">├─ 安全隐私 → <span class="text-orange-600 font-semibold">Claude 3.5</span></div>
+                        <div class="ml-4">└─ 多模态能力 → <span class="text-red-600 font-semibold">Gemini</span></div>
+                    </div>
+                </div>
+
+                <!-- 成本对比 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">💰 成本对比（2026年）</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead>
+                            <tr class="bg-orange-50">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">模型</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">输入成本</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">输出成本</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">推荐用途</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 font-medium">GPT-4</td>
+                                <td class="px-6 py-4">$0.03/1K tokens</td>
+                                <td class="px-6 py-4">$0.06/1K tokens</td>
+                                <td class="px-6 py-4">复杂推理</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">GPT-3.5</td>
+                                <td class="px-6 py-4">$0.0005/1K tokens</td>
+                                <td class="px-6 py-4">$0.0015/1K tokens</td>
+                                <td class="px-6 py-4">通用任务</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">Claude 3.5</td>
+                                <td class="px-6 py-4">$0.003/1K tokens</td>
+                                <td class="px-6 py-4">$0.015/1K tokens</td>
+                                <td class="px-6 py-4">安全敏感</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">文心一言</td>
+                                <td class="px-6 py-4">¥0.008/1K tokens</td>
+                                <td class="px-6 py-4">¥0.016/1K tokens</td>
+                                <td class="px-6 py-4">中文场景</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">DeepSeek</td>
+                                <td class="px-6 py-4">¥0.001/1K tokens</td>
+                                <td class="px-6 py-4">¥0.002/1K tokens</td>
+                                <td class="px-6 py-4">成本敏感</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 常见陷阱与解决方案 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">⚠️ 常见陷阱与解决方案</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-red-800 mb-2">❌ 陷阱1：过度依赖单一模型</h4>
+                        <p class="text-red-700 text-sm"><strong>解决：</strong>实施模型路由策略，根据任务选择最优模型</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-red-800 mb-2">❌ 陷阱2：忽视提示词优化</h4>
+                        <p class="text-red-700 text-sm"><strong>解决：</strong>投入时间在提示词工程上，通常能带来30-50%的性能提升</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-red-800 mb-2">❌ 陷阱3：不处理长文本</h4>
+                        <p class="text-red-700 text-sm"><strong>解决：</strong>实施文本分割、递归处理、摘要技术</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-red-800 mb-2">❌ 陷阱4：成本失控</h4>
+                        <p class="text-red-700 text-sm"><strong>解决：</strong>实施token计数、缓存、速率限制</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-red-800 mb-2">❌ 陷阱5：忽视错误处理</h4>
+                        <p class="text-red-700 text-sm"><strong>解决：</strong>实施重试机制、降级策略、人工介入流程</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-red-800 mb-2">❌ 陷阱6：没有监控和告警</h4>
+                        <p class="text-red-700 text-sm"><strong>解决：</strong>建立完整的监控系统，监测核心指标</p>
+                    </div>
+                </div>
+
+                <!-- 6个关键成功指标 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">📊 6个关键成功指标</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-1">85%+</div>
+                        <div class="text-sm text-gray-600">准确率</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-1">&lt;2秒</div>
+                        <div class="text-sm text-gray-600">响应时间</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                        <div class="text-3xl font-bold text-purple-600 mb-1">&lt;$0.01</div>
+                        <div class="text-sm text-gray-600">单次成本</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                        <div class="text-3xl font-bold text-orange-600 mb-1">80%+</div>
+                        <div class="text-sm text-gray-600">用户满意度</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                        <div class="text-3xl font-bold text-red-600 mb-1">99%+</div>
+                        <div class="text-sm text-gray-600">系统可用性</div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                        <div class="text-3xl font-bold text-teal-600 mb-1">&lt;1%</div>
+                        <div class="text-sm text-gray-600">错误率</div>
+                    </div>
+                </div>
+
+                <!-- 推荐学习路径 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">🎓 推荐学习路径</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                        <h4 class="font-semibold text-blue-900 mb-2">方案A：快速上手（1天）</h4>
+                        <ol class="list-decimal list-inside text-blue-800 text-sm space-y-1">
+                            <li>阅读 QUICK_START_GUIDE.md (30分钟)</li>
+                            <li>运行 complete_llm_application_suite.py (30分钟)</li>
+                            <li>尝试修改代码 (1小时)</li>
+                            <li>完成一个简单应用 (2小时)</li>
+                        </ol>
+                    </div>
+                    <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
+                        <h4 class="font-semibold text-purple-900 mb-2">方案B：深入学习（1周）</h4>
+                        <ol class="list-decimal list-inside text-purple-800 text-sm space-y-1">
+                            <li>阅读 QUICK_START_GUIDE.md (30分钟)</li>
+                            <li>阅读 llm_development_guide.md (2小时)</li>
+                            <li>研究 complete_llm_application_suite.py (2小时)</li>
+                            <li>阅读 llm_applications_summary.md (2小时)</li>
+                            <li>实现完整项目 (2天)</li>
+                            <li>进行性能优化 (1天)</li>
+                        </ol>
+                    </div>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                        <h4 class="font-semibold text-green-900 mb-2">方案C：专业开发（2周）</h4>
+                        <ol class="list-decimal list-inside text-green-800 text-sm space-y-1">
+                            <li>完成方案B的所有内容</li>
+                            <li>研究具体应用案例的深度实现</li>
+                            <li>学习成本优化和性能调优</li>
+                            <li>建立监控和告警系统</li>
+                            <li>准备生产部署</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- 文件导航 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">📂 配套文档导航</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-8">
+                    <a href="INDEX_AND_GUIDE.md" class="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                        <h4 class="font-semibold text-gray-900 mb-1">📋 INDEX_AND_GUIDE.md</h4>
+                        <p class="text-sm text-gray-600">项目索引和导航指南，包含3个学习方案</p>
+                    </a>
+                    <a href="QUICK_START_GUIDE.md" class="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                        <h4 class="font-semibold text-gray-900 mb-1">🚀 QUICK_START_GUIDE.md</h4>
+                        <p class="text-sm text-gray-600">5分钟快速启动指南，6个应用速查表</p>
+                    </a>
+                    <a href="llm_development_guide.md" class="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                        <h4 class="font-semibold text-gray-900 mb-1">📖 llm_development_guide.md</h4>
+                        <p class="text-sm text-gray-600">完整开发指南（6000+字），7大最佳实践</p>
+                    </a>
+                    <a href="llm_applications_summary.md" class="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                        <h4 class="font-semibold text-gray-900 mb-1">📊 llm_applications_summary.md</h4>
+                        <p class="text-sm text-gray-600">应用案例综合分析（8000+字），5种模型对比</p>
+                    </a>
+                </div>
+
+                <!-- 部署检查清单 -->
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">✅ 部署前检查清单</h3>
+                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+                    <div class="grid md:grid-cols-2 gap-3 text-sm">
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>API密钥已安全配置</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>依赖包已全部安装</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>环境变量已正确设置</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>基础功能已测试</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>错误处理已实现</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>日志系统已配置</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>监控指标已设置</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" class="rounded text-orange-600">
+                            <span>成本监控已启用</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Practice Section -->
+    <section id="team-practice" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center mb-8">
+                <span class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center font-bold text-xl mr-4">👥</span>
+                <h2 class="text-4xl font-bold">团队实践</h2>
+            </div>
+
+            <div class="prose prose-lg max-w-none">
+                <h3 class="text-2xl font-semibold mb-4 text-teal-700">内部使用规范
+                    <a href="concepts.html#practice" class="text-teal-600 hover:underline text-base font-normal ml-2">📖 团队实践详解 →</a>
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-3 text-teal-600">✅ 应该做的</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 敏感数据脱敏后再输入</li>
+                            <li>• 使用公司统一的API Key</li>
+                            <li>• 记录Prompt版本和效果</li>
+                            <li>• 定期审查和优化成本</li>
+                            <li>• 分享有效的Prompt模板</li>
+                            <li>• 建立内部知识库</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h4 class="font-semibold text-lg mb-3 text-red-600">❌ 不应该做的</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 输入客户隐私数据</li>
+                            <li>• 分享API Key给外部人员</li>
+                            <li>• 直接复制AI输出到生产环境</li>
+                            <li>• 忽视API调用成本</li>
+                            <li>• 使用未经验证的代码</li>
+                            <li>• 泄露公司内部架构信息</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-teal-700">成本控制策略</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead>
+                            <tr class="bg-teal-50">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">策略</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">说明</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">节省比例</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 font-medium">缓存响应</td>
+                                <td class="px-6 py-4">相同输入直接返回缓存结果</td>
+                                <td class="px-6 py-4 text-green-600">30-50%</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">模型选择</td>
+                                <td class="px-6 py-4">简单任务用GPT-3.5，复杂任务用GPT-4</td>
+                                <td class="px-6 py-4 text-green-600">50-80%</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">Prompt优化</td>
+                                <td class="px-6 py-4">精简Prompt，减少token数</td>
+                                <td class="px-6 py-4 text-green-600">20-40%</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium">批量处理</td>
+                                <td class="px-6 py-4">合并多个请求，减少API调用次数</td>
+                                <td class="px-6 py-4 text-green-600">10-20%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-teal-700">安全注意事项
+                    <a href="concepts.html#safety" class="text-red-600 hover:underline text-base font-normal ml-2">📖 安全伦理详解 →</a>
+                </h3>
+                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
+                    <h4 class="font-semibold text-yellow-900 mb-3">⚠️ 数据安全红线</h4>
+                    <ul class="space-y-2 text-yellow-800">
+                        <li><strong>个人隐私数据</strong>：姓名、电话、身份证号、地址等</li>
+                        <li><strong>商业机密</strong>：未公开的产品计划、财务数据、合同内容</li>
+                        <li><strong>系统安全</strong>：数据库密码、API密钥、服务器架构</li>
+                        <li><strong>客户信息</strong>：客户名单、交易记录、沟通内容</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-teal-700">Prompt模板库</h3>
+                <div class="space-y-4 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <h4 class="font-semibold mb-2">代码解释模板</h4>
+                        <div class="code-block text-sm">
+                            <pre>请解释以下代码的功能和工作原理：
+
+代码：
+```{language}
+{code}
+```
+
+请从以下几个方面解释：
+1. 整体功能
+2. 关键逻辑
+3. 潜在问题
+4. 改进建议</pre>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <h4 class="font-semibold mb-2">Bug修复模板</h4>
+                        <div class="code-block text-sm">
+                            <pre>请帮我修复以下代码中的Bug：
+
+代码：
+```{language}
+{code}
+```
+
+错误信息：
+{error_message}
+
+期望行为：
+{expected_behavior}
+
+请提供：
+1. Bug原因分析
+2. 修复后的代码
+3. 预防措施</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-teal-700">迭代开发周期</h3>
+                <div class="relative border-l-2 border-teal-200 ml-4 mb-8">
+                    <div class="mb-8 ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-teal-500 rounded-full"></span>
+                        <h4 class="font-semibold">第1周：原型验证</h4>
+                        <p class="text-gray-600">选择简单应用，快速构建MVP，验证API可用性</p>
+                    </div>
+                    <div class="mb-8 ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-teal-500 rounded-full"></span>
+                        <h4 class="font-semibold">第2周：功能完善</h4>
+                        <p class="text-gray-600">添加错误处理，实施日志系统，性能基准测试</p>
+                    </div>
+                    <div class="mb-8 ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-teal-500 rounded-full"></span>
+                        <h4 class="font-semibold">第3周：优化迭代</h4>
+                        <p class="text-gray-600">优化提示词，调整模型选择，成本优化</p>
+                    </div>
+                    <div class="ml-6">
+                        <span class="absolute -left-2 w-4 h-4 bg-teal-600 rounded-full"></span>
+                        <h4 class="font-semibold">第4周：生产部署</h4>
+                        <p class="text-gray-600">安全加固，负载测试，监控配置</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-teal-700">实战建议</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-blue-900 mb-2">初学者</h4>
+                        <ul class="text-sm text-blue-800 space-y-1">
+                            <li>• 从最简单的应用开始</li>
+                            <li>• 使用GPT-3.5（成本低）</li>
+                            <li>• 专注理解概念</li>
+                            <li>• 多做实验建立直觉</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-purple-900 mb-2">中级开发者</h4>
+                        <ul class="text-sm text-purple-800 space-y-1">
+                            <li>• 构建完整系统</li>
+                            <li>• 优化提示词和成本</li>
+                            <li>• 完善监控和日志</li>
+                            <li>• 思考生产环境</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-green-900 mb-2">高级开发者</h4>
+                        <ul class="text-sm text-green-800 space-y-1">
+                            <li>• 自建向量数据库</li>
+                            <li>• 实施多模型策略</li>
+                            <li>• 优化推理管道</li>
+                            <li>• 贡献开源社区</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4 text-orange-700">📝 实战作业</h3>
+                <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8">
+                    <p class="text-gray-700 mb-4">
+                        完成以下实战作业，运行大模型应用完整示例程序，体验智能客服、内容分析、代码生成等功能。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 mt-0.5">1</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">下载代码</h4>
+                                <p class="text-sm text-gray-600">下载完整示例代码文件，包含5个应用场景的实现</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 mt-0.5">2</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">配置环境</h4>
+                                <p class="text-sm text-gray-600">安装依赖：<code class="bg-gray-100 px-2 py-0.5 rounded">pip install langchain python-dotenv requests</code></p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 mt-0.5">3</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">获取API密钥</h4>
+                                <p class="text-sm text-gray-600">前往 <a href="https://bailian.aliyun.com/" target="_blank" class="text-orange-600 hover:underline">阿里云百炼</a> 申请千问API密钥</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm mr-3 mt-0.5">4</span>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">运行程序</h4>
+                                <p class="text-sm text-gray-600">修改代码中的API密钥，取消main()注释，运行程序体验各功能</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-white rounded-lg border border-orange-200">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <svg class="w-8 h-8 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">complete_llm_application_suite.py</h4>
+                                    <p class="text-sm text-gray-500">Python · 447行 · 适配千问/智谱/文心等国内大模型</p>
+                                </div>
+                            </div>
+                            <a href="complete_llm_application_suite.py" download class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                下载代码
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="py-20 bg-gradient-to-br from-indigo-600 to-purple-700 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">学习路径总结</h2>
+            <div class="grid md:grid-cols-5 gap-4 mb-12">
+                <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                    <div class="text-4xl font-bold mb-2">01</div>
+                    <h3 class="font-semibold mb-2">基础认知</h3>
+                    <p class="text-sm text-indigo-100">理解概念、历史、应用场景</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                    <div class="text-4xl font-bold mb-2">02</div>
+                    <h3 class="font-semibold mb-2">核心原理</h3>
+                    <p class="text-sm text-indigo-100">Transformer、预训练、微调</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                    <div class="text-4xl font-bold mb-2">03</div>
+                    <h3 class="font-semibold mb-2">实践应用</h3>
+                    <p class="text-sm text-indigo-100">API调用、Prompt、RAG</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                    <div class="text-4xl font-bold mb-2">04</div>
+                    <h3 class="font-semibold mb-2">进阶掌握</h3>
+                    <p class="text-sm text-indigo-100">优化、部署、前沿趋势</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+                    <div class="text-4xl font-bold mb-2">05</div>
+                    <h3 class="font-semibold mb-2">实战案例</h3>
+                    <p class="text-sm text-indigo-100">真实项目、团队实践</p>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur rounded-lg p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-4">✅ 掌握检查清单</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-left">
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center mr-3">✓</span>
+                        <span>能够解释大语言模型的基本原理</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center mr-3">✓</span>
+                        <span>使用API调用主流大模型</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center mr-3">✓</span>
+                        <span>编写有效的Prompt</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center mr-3">✓</span>
+                        <span>构建简单的RAG应用</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center mr-3">✓</span>
+                        <span>理解模型微调和优化概念</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center mr-3">✓</span>
+                        <span>跟进领域最新进展</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-indigo-100">
+                祝学习愉快！如有问题，欢迎随时交流。
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p>大语言模型入门手册 · 团队新人指南</p>
+            <p class="text-sm mt-2">配合团队学习使用 · 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
