@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-28",
+  "lastUpdated": "2026-03-02",
   "version": "1.0",
   "hotNews": [
     {
@@ -8,7 +8,11 @@
       "category": "模型发布",
       "date": "2026-02",
       "summary": "OpenAI发布GPT-5预览版，支持多模态理解和生成长达100万token的上下文，推理能力大幅提升。",
-      "tags": ["多模态", "长上下文", "推理增强"],
+      "tags": [
+        "多模态",
+        "长上下文",
+        "推理增强"
+      ],
       "source": "OpenAI Blog",
       "url": "https://openai.com/blog",
       "verified": true
@@ -19,7 +23,11 @@
       "category": "开源模型",
       "date": "2026-02",
       "summary": "DeepSeek发布V4版本，性能接近GPT-4但成本降低80%，支持128K上下文，完全开源可商用。",
-      "tags": ["开源", "高性价比", "长上下文"],
+      "tags": [
+        "开源",
+        "高性价比",
+        "长上下文"
+      ],
       "source": "DeepSeek",
       "url": "https://deepseek.com",
       "verified": true
@@ -30,7 +38,11 @@
       "category": "工具框架",
       "date": "2026-02",
       "summary": "LangChain发布3.0大版本，重构核心架构，性能提升3倍，新增可视化链路编排工具。",
-      "tags": ["框架", "性能优化", "可视化"],
+      "tags": [
+        "框架",
+        "性能优化",
+        "可视化"
+      ],
       "source": "LangChain",
       "url": "https://langchain.com",
       "verified": true
@@ -41,7 +53,11 @@
       "category": "应用落地",
       "date": "2026-02",
       "summary": "Anthropic推出Claude企业版，支持SSO、审计日志、数据隔离等企业级功能，满足合规需求。",
-      "tags": ["企业级", "安全合规", "B2B"],
+      "tags": [
+        "企业级",
+        "安全合规",
+        "B2B"
+      ],
       "source": "Anthropic",
       "url": "https://anthropic.com",
       "verified": true
